@@ -10,7 +10,6 @@ import {
 
 
 function Card({focused, handleClick, characterInfo}) {
-  console.log(characterInfo)
   return (
     <Col xs={12} md={4} sm={6}>
       <article className="material-card Red">
