@@ -1,24 +1,21 @@
-import React, { Component } from 'react';
-import { ThemeContext } from '../../../utils/theme-context';
-
+import React from 'react';
+import {
+    compose
+  } from 'recompose';
 import './button.css';
 
 
-class CustomBtn extends Component {
-    constructor(props) {
-        super(props);
-        
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-            <a className="btn-gradient red mini">Button</a>
-            </React.Fragment>
-
-        );
-    }
-
-}
+/*
 CustomBtn.contextType = ThemeContext;
-export default CustomBtn;
+export default CustomBtn; */
+
+const CustomBtn = ({handleButtonAction}) => {
+  return (
+    <React.Fragment>
+    <a className="btn-gradient red mini"  onClick={handleButtonAction} >Buscar</a>
+    </React.Fragment>
+
+)
+}
+  
+  export default compose()(CustomBtn);

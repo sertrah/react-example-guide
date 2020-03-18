@@ -1,8 +1,9 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Grid, Row } from 'react-flexbox-grid';
 
 import CustomInput from './../../elements/custom-Input/input';
 import CustomBtn from './../../elements/button/button';
+import './searchBar.css';
 
 import {
     compose,
@@ -10,13 +11,12 @@ import {
     withHandlers,
 } from 'recompose';
 
-
-function searchBar({ searchValue, handleInputValue }) {
+function searchBar({ actionButton, handleInputValue, searchValue }) {
     return (
-        <Grid fluid>
-            <Row>
+        <Grid fluid className="searchbar_container">
+            <Row center="xs">
                 <CustomInput handleInputValue={ handleInputValue.bind(this)} />
-                <CustomBtn />
+                <CustomBtn handleButtonAction={ ()=> actionButton(searchValue) } />
             </Row>
         </Grid>
     );

@@ -1,0 +1,9 @@
+.searchbar_container{
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.searchbar_container .btn-gradient{
+    margin-top: 20px;
+    margin-left: 20px;
+}

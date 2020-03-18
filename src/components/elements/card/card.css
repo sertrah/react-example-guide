@@ -26,7 +26,9 @@
 .material-card {
   position: relative;
   height: 0;
-  padding-bottom: calc(100% - 16px);
+  width: 74%;
+    margin: 0 auto;
+  padding-bottom: calc(100% - 89px);
   margin-bottom: 6.6em;
 }
 .material-card h2 {
@@ -94,6 +96,8 @@
   top: 0;
   bottom: 16px;
   left: 16px;
+  width: 210px;
+  margin: 0 auto;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -ms-transition: all 0.3s;
@@ -151,37 +155,37 @@
 
 
 .material-card.Red h2 {
-  background-color: #F44336;
+  background-color: #6d0110;
 }
 .material-card.Red h2:after {
-  border-top-color: #F44336;
-  border-right-color: #F44336;
+  border-top-color: #6d0110;
+  border-right-color: #6d0110;
   border-bottom-color: transparent;
   border-left-color: transparent;
 }
 .material-card.Red h2:before {
   border-top-color: transparent;
-  border-right-color: #B71C1C;
-  border-bottom-color: #B71C1C;
+  border-right-color: #5f0000;
+  border-bottom-color: #5f0000;
   border-left-color: transparent;
 }
 .material-card.Red.mc-active h2:before {
   border-top-color: transparent;
-  border-right-color: #F44336;
-  border-bottom-color: #F44336;
+  border-right-color: #6d0110;
+  border-bottom-color: #6d0110;
   border-left-color: transparent;
 }
 .material-card.Red.mc-active h2:after {
-  border-top-color: #B71C1C;
-  border-right-color: #B71C1C;
+  border-top-color: #5f0000;
+  border-right-color: #5f0000;
   border-bottom-color: transparent;
   border-left-color: transparent;
 }
 .material-card.Red .mc-btn-action {
-  background-color: #F44336;
+  background-color: #6d0110;
 }
 .material-card.Red .mc-btn-action:hover {
-  background-color: #B71C1C;
+  background-color: #5f0000;
 }
 
 .material-card.Red.mc-active .mc-content {

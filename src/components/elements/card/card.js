@@ -16,16 +16,16 @@ function Card({focused, handleClick, characterInfo}) {
         <h2>
           <span>{characterInfo.name}</span>
           <strong>
-            <i className="fa fa-fw fa-star"></i>
-            The Deer Hunter
+            <i className="fa fa-fw fa-star"></i>ID:  
+            {characterInfo.id}
                     </strong>
         </h2>
         <div className="mc-content">
           <div className="img-container">
-            <img className=""  src={`${characterInfo.thumbnail.path}/portrait_incredible.jpg`} />
+            <img className="" alt="character" src={`${characterInfo.thumbnail.path}/portrait_incredible.jpg`} />
           </div>
         </div>
-        <a className="mc-btn-action">
+        <a className="mc-btn-action" href="!#">
           <i className="fa fa-bars"></i>
         </a>
       </article>

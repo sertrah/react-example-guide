@@ -5,8 +5,7 @@ import Card from './../../elements/card/card';
 
 import { componentFromStreamWithConfig } from 'recompose';
 import { from } from 'rxjs';
-import { map, tap, switchMap } from 'rxjs/operators';
-import { fromFetch } from 'rxjs/fetch';
+import { map, tap } from 'rxjs/operators';
 
 
 const componentFromStream = componentFromStreamWithConfig({
@@ -16,24 +15,30 @@ const componentFromStream = componentFromStreamWithConfig({
 
 
 export default componentFromStream(props$ => {
-
-    const request$ = fromFetch('https://gateway.marvel.com:443/v1/public/characters?apikey=b29f36da9c918420ce72c408fef392a7');
-
+    console.log('props$', props$);
+  /*   const request$ = fromFetch('https://gateway.marvel.com:443/v1/public/characters?apikey=b29f36da9c918420ce72c408fef392a7');
     return request$.pipe(
         switchMap((res) => res.json()),
-        map((x) => x.data.results),
-        map(x => (
-            <Grid fluid>
-                <Row>
-                    {x.map((data, index) => (
-                        <Card
-                            key={index}
-                            characterInfo={data}
-                        />
-                    ))}
-                </Row>
-            </Grid>
-        ))
+        map((x) => x.data.results), */
+
+    return props$.pipe(
+        tap(console.log),
+        map((characters) => characters.characters["data"]),
+        map(x => {
+            console.log("[3]", x);
+            return (
+                <Grid fluid>
+                    <Row>
+                      { x ? x.map((data, index) => (
+                            <Card
+                                key={index}
+                                characterInfo={data}
+                            />
+                        )) :  <p>no data</p>}
+                    </Row>
+                </Grid>
+            )
+        })
     )
 })
 

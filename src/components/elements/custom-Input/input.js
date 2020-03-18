@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  compose,
-  withState,
-  withHandlers,
+  compose
 } from 'recompose';
 import './input.css';
 
