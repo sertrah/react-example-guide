@@ -17,7 +17,6 @@ the purpose with this project is to use the libraries that are used in the indus
 }
 
 ``` 
-> **id**: 'app.learn-react-link' will be our id when react-intl try to know whats word must be used  
 
 [3] Wrap your app with IntlProvider
 
@@ -41,11 +40,16 @@ ReactDOM.render(
 ```
 > **locale**: default lenguage
 
-[4] And finally. where we will text translate-
-> We could use a diferent way depending our type of data react-intl >documentation<[https://github.com/formatjs/react-intl/blob/master/docs/Getting-Started.md]
+[4] And finally. where we will text translate
+> We could use a diferent way depending our type of data [>react-intl documentation<](https://github.com/formatjs/react-intl/blob/master/docs/Getting-Started.md)
 
+```
 
+<h1> 
+    <FormattedMessage id="app.learn-react-link" defaultMessage="Default message if we dont identify any lengauge" description="bar" />;
+</h1>
 
-
+```
+> **id**: 'app.learn-react-link'  will be our id when react-intl try to know whats word must be used  to translate the text
 
 
