@@ -66,3 +66,30 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+## Internationalization
+
+[1] Install react-intl to your project
+
+`npm install --save react-intl`
+
+[2] Wrap your app with IntlProvider
+
+``` 
+import {IntlProvider} from "react-intl";
+
+ReactDOM.render(
+    <IntlProvider locale='en'>
+        <App/>
+    </IntlProvider>,
+    document.getElementById('root')
+); 
+```
+> **locale**: default lenguage
+
+[3] 
+
+
+
+

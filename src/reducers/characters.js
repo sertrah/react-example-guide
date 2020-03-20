@@ -1,8 +1,10 @@
 
-/* import { createSelector } from 'reselect'
+/* import { createSelector } from 'reselect';
  */
 import { constants } from './../types/characters';
-
+ import {normalize} from 'normalizr';
+import { characterListSchema } from '../schema/character';
+ 
 const initialState = {
   data: [],
   error: null,
@@ -15,6 +17,7 @@ export function reducer(state = initialState, action) {
       return { ...state, isLoading: true };
     }
     case constants.FETCH_CHARACTERS_SUCCESS: {
+      console.log(normalize(action.payload, characterListSchema))
       return { ...state, data: action.payload, error: null, isLoading: false };
     }
 

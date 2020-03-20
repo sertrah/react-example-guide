@@ -33,4 +33,4 @@ function fetchCharacters(characters) {
   }
 }
 
-export const characterActions = { searchCharacter, fetchCharacters }
+export const charactersActions = { searchCharacter, fetchCharacters }

@@ -1,9 +1,27 @@
 import { fromFetch } from 'rxjs/fetch';
-import { constants, characterActions } from '../types/characters';
-import { catchError, switchMap, map, tap } from 'rxjs/operators';
+import { constants, charactersActions } from '../types/characters';
+import { catchError, switchMap, map, tap, shareReplay } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
 import { of } from 'rxjs';
 
+
+let characterCache$ = null;
+
+function getCharacters() {
+  if (!characterCache$) {
+    characterCache$ = requestCharacters().pipe(
+      shareReplay(1)
+    )
+  }
+  return characterCache$
+}
+
+function requestCharacters() {
+  return fromFetch(`${process.env.REACT_APP_MARVEL_ENDPOINT}?apikey=${process.env.REACT_APP_MARVEL_API_KEY}`).pipe(
+    switchMap(ajaxRes => ajaxRes.json()),
+    map((x) => x.data.results)
+  );
+}
 
 export const fetchCharacters = (action$) =>
   action$
@@ -11,11 +29,9 @@ export const fetchCharacters = (action$) =>
       ofType(constants.FETCH_CHARACTERS),
       tap(console.log)
       , switchMap(() =>
-        fromFetch(`https://gateway.marvel.com:443/v1/public/characters?apikey=b29f36da9c918420ce72c408fef392a7`).pipe(
-          switchMap(ajaxRes => ajaxRes.json()),
-          map((x) => x.data.results),
-          map(characterActions.fetchCharacters),
-          catchError(error => of({
+        getCharacters().pipe(
+          map(charactersActions.fetchCharacters),
+          catchError(() => of({
             type: constants.FETCH_CHARACTERS_ERROR,
             payload: "error.xhr.response"
           }))
@@ -30,11 +46,11 @@ export const searchCharacter = (action$) =>
     tap(console.log),
     map((payload) => payload.searchValue),
     switchMap((searchValue) =>
-      fromFetch(`https://gateway.marvel.com:443/v1/public/characters/${searchValue}?apikey=b29f36da9c918420ce72c408fef392a7`).pipe(
+      fromFetch(`${process.env.REACT_APP_MARVEL_ENDPOINT}?nameStartsWith=${searchValue}&limit=10&offset=0&apikey=${process.env.REACT_APP_MARVEL_API_KEY}`).pipe(
         switchMap(ajaxRes => ajaxRes.json()),
         map((x) => x.data.results),
-        map(characterActions.searchCharacter),
-        catchError(error => of({
+        map(charactersActions.searchCharacter),
+        catchError(() => of({
           type: constants.SEARCH_CHARACTERS_ERROR,
           payload: "error.xhr.response"
         }))

@@ -8,32 +8,35 @@ import {
   withHandlers,
 } from 'recompose';
 
+import {
+  Link
+} from "react-router-dom";
 
-function Card({focused, handleClick, characterInfo}) {
+function Card({ focused,  handleClick, characterInfo }) {
   return (
     <Col xs={12} md={4} sm={6}>
       <article className="material-card Red">
         <h2>
           <span>{characterInfo.name}</span>
           <strong>
-            <i className="fa fa-fw fa-star"></i>ID:  
+            <i className="fa fa-fw fa-star"></i>ID:
             {characterInfo.id}
-                    </strong>
+          </strong>
         </h2>
         <div className="mc-content">
           <div className="img-container">
-            <img className="" alt="character" src={`${characterInfo.thumbnail.path}/portrait_incredible.jpg`} />
+            <a className="c-preview">
+              <div className="c-preview__img" style={{ background: `#000 url(${characterInfo.thumbnail.path}/portrait_incredible.jpg) no-repeat` }}></div>
+            </a>
           </div>
         </div>
-        <a className="mc-btn-action" href="!#">
-          <i className="fa fa-bars"></i>
-        </a>
+        <Link className="mc-btn-action" to={`/character/${characterInfo.id}`}>⮕</Link>
       </article>
     </Col>
   );
 }
 
- const enhance = compose(
+const enhance = compose(
   withState('focused', 'setFocused', false),
   withHandlers({
     handleClick: props => event => {
