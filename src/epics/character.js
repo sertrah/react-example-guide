@@ -3,12 +3,13 @@ import { constants, characterActions } from '../types/character';
 import { catchError, switchMap, map, tap } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
 import { of } from 'rxjs';
+import { showLoading } from './../utils/shared-service';
 
 
 export const searchCharacterByID = (action$) =>
   action$.pipe(
     ofType(constants.FETCH_CHARACTER_BY_ID),
-    tap(console.log),
+    tap(()=> showLoading (true)),
     map((payload) => payload.characerID),
     switchMap((characerID) =>
       fromFetch(`${process.env.REACT_APP_MARVEL_ENDPOINT}/${characerID}?apikey=${process.env.REACT_APP_MARVEL_API_KEY}`).pipe(
@@ -18,7 +19,8 @@ export const searchCharacterByID = (action$) =>
         catchError( () => of({
           type: constants.FETCH_CHARACTER_BY_ID_ERROR,
           payload: "error.xhr.response"
-        }))
+        })),
+        tap(()=> showLoading (false))
       )
     )
   );

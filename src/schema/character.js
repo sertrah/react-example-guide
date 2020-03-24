@@ -5,5 +5,10 @@ export const characterSchema = new schema.Entity('character');
 export const characterListSchema = new schema.Array(characterSchema);
 
 
-/* const normalizedData = normalize(originalData, characterSchema);
- */
+
+/* 
+
+const normalizedData = normalize(originalData, char acterSchema);
+
+
+*/

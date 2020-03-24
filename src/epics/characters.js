@@ -45,7 +45,7 @@ export const fetchCharacters = (action$) =>
 export const searchCharacter = (action$) =>
   action$.pipe(
     ofType(constants.SEARCH_CHARACTERS),
-    tap(console.log),
+    tap(()=> showLoading (true)),
     map((payload) => payload.searchValue),
     switchMap((searchValue) =>
       fromFetch(`${process.env.REACT_APP_MARVEL_ENDPOINT}?nameStartsWith=${searchValue}&limit=10&offset=0&apikey=${process.env.REACT_APP_MARVEL_API_KEY}`).pipe(
@@ -55,7 +55,8 @@ export const searchCharacter = (action$) =>
         catchError(() => of({
           type: constants.SEARCH_CHARACTERS_ERROR,
           payload: "error.xhr.response"
-        }))
+        })),
+        tap(()=> showLoading (false))
       )
     )
   );
