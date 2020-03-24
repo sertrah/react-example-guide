@@ -6,6 +6,33 @@ body{
   background: #E0E8FF;
 }
 
+#loading-container{
+  position: fixed;
+  background: rgba(121, 154, 215, 0.81);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+    align-items: center;
+  z-index: 165;
+  justify-content: space-evenly;
+}
+#loading-container h1 {
+  text-align: center;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+    color: #fff;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

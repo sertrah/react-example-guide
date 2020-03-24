@@ -3,6 +3,7 @@ import { constants, charactersActions } from '../types/characters';
 import { catchError, switchMap, map, tap, shareReplay } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
 import { of } from 'rxjs';
+import { showLoading } from './../utils/shared-service';
 
 
 let characterCache$ = null;
@@ -27,14 +28,15 @@ export const fetchCharacters = (action$) =>
   action$
     .pipe(
       ofType(constants.FETCH_CHARACTERS),
-      tap(console.log)
+      tap(()=> showLoading (true))
       , switchMap(() =>
         getCharacters().pipe(
           map(charactersActions.fetchCharacters),
           catchError(() => of({
             type: constants.FETCH_CHARACTERS_ERROR,
             payload: "error.xhr.response"
-          }))
+          })),
+          tap(()=> showLoading (false))
         )
       )
     )

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+
 import './App.css';
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import Cards from './containers/cards';
 import SearchBar from './containers/searchBar';
@@ -18,17 +20,15 @@ const messages = {
 };
 
 
-const language = "navigator.language.split(/[-_]/)[0]";  // language without region code
-
+/* const language = "navigator.language.split(/[-_]/)[0]";  // language without region code
+ */
 const PostDate = injectIntl(({ date, intl }) => (
   <span title={intl.formatDate(date)}>
     <FormattedRelativeTime value={date} />
   </span>
 ));
 
-function App({ characters, getChacarterBySearch, getAllCharacter }) {
-
-
+const App = ({ characters, getChacarterBySearch, getAllCharacter }) => {
   useFetching(getAllCharacter);
   return (
     !characters.error ? <>
@@ -49,13 +49,20 @@ function App({ characters, getChacarterBySearch, getAllCharacter }) {
   );
 }
 
+// La forma como se tipea mi fai.
+
+App.propTypes = {
+  characters: PropTypes.object,
+  getChacarterBySearch: PropTypes.func,
+  getAllCharacter: PropTypes.func,
+};
+
+
 const useFetching = someFetchActionCreator => {
   useEffect(() => {
     someFetchActionCreator();
   }, [])
 }
-/* export default App;
- */
 
 const mapStateToProps = (state) => {
   return { characters: getCharacterList(state) }
